@@ -1,5 +1,4 @@
 Django==1.4.3
-Pattern==2.5
 PyYAML==3.10
 anyjson==0.3.3
 beautifulsoup4==4.1.3
