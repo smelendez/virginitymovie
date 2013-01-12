@@ -1,12 +1,20 @@
+var freeze = false;
+var nopulse = false;
 function nodeclick(d) {
+    open(d.fields.link);
 
 }
+function randInt(x, y) {
+    return Math.floor(Math.random() * (y-x) + x);
+}
 function nodemouseover(d) {
-    this.setAttribute("r", 7);
+    freeze = true;
+    d3.select("#tooltip").text(d.fields.title);
 
 }
 function nodemouseout(d) {
-    this.setAttribute("r", 5);
+    freeze = false;
+    d3.select("#tooltip").text("");
 }
 
 function initialize (){
@@ -16,14 +24,13 @@ function initialize (){
     var height = 500;
 
     var force = d3.layout.force()
-        .charge(-120)
+        .charge(-40)
         .linkDistance(30)
-        .size([width, height]);
+        .size([width - 50,height]);
 
-    svg = d3.select("#svg-container").append("svg")
+    svg = d3.select("#circles").append("svg")
         .attr("width", width)
         .attr("height", height);
-    console.log(svg);
 
 
 
@@ -42,8 +49,8 @@ function initialize (){
         .data(entries)
         .enter().append("circle")
         .attr("class", "node")
-        .attr("r", 5)
-        .style("fill", "pink")
+        .attr("r", function(d) {var r= randInt(5, 10); if (r > 7) {d.up = true;} else d.up = false; return r;})
+        .style("fill", "grey")
         .on("click", nodeclick)
         .on("mouseover", nodemouseover)
         .on("mouseout", nodemouseout)
@@ -53,25 +60,73 @@ function initialize (){
         var link = svg.selectAll("line.links")
         .data(links)
         .enter().append("line")
-        .attr("class", "link")
-        .style("stroke-width", 1);
+        .attr("class", "link");
 
+        var whichtick = 0;
         force.on("tick", function() {
+            if(freeze) return;
             link.attr("x1", function(d) { return d.source.x; })
                 .attr("y1", function(d) { return d.source.y; })
                 .attr("x2", function(d) { return d.target.x; })
                 .attr("y2", function(d) { return d.target.y; });
 
-            node.attr("cx", function(d) { return d.x;})
+            
+             node.attr("cx", function(d) { return d.x;})
                 .attr("cy", function(d) { return d.y;});
+
+                
 
         }); // tick
 
-        function select_tag(tag){
+        d3.timer(function(){
+            var amount = 0.1;
+            if(freeze) return;
+            if (nopulse) {
+                node.attr("r", 7.5);
+
+            }
+            
+            node.attr("r", function(d) {
+                var r = parseFloat(this.getAttribute("r"));
+                if (d.up)
+                {
+                    r += amount;
+
+                    if (r > 10)
+                    {
+                        r -= amount;
+                        d.up = false;
+                    }
+
+                }
+                else
+                {
+                    r -= amount;
+
+                    if (r < 5)
+                    {
+                        r += amount;
+                        d.up = true;
+                    }
+                }
+                return r;
+                
+
+
+            });
+
+        }, 1000);
+
+
+        function select_tag(tag, category){
             var tagnodes = [];
-            d3.json("/api/tag/" + tag + "/stories", function (error, entries) {
+            links = [];
+            force.links(links);
+            d3.json("/api/tag/" + tag + "/" + category + "/stories", function (error, entries) {
+                node.style("fill","grey");
                 entries.forEach(function(story) {
                     var storynode = nodemap[story.pk];
+                    document.getElementById(story.pk).style.fill="red";
 
                     var ntagnodes = tagnodes.length;
                     tagnodes.push(storynode);
@@ -84,10 +139,12 @@ function initialize (){
 
                 });
 
+                link.data([]);
                 link = link.data(links);
 
                 link.enter().insert("line", ".node")
                     .attr("class", "link");
+                link.exit().remove();
 
                 force.start();
                 
@@ -95,7 +152,15 @@ function initialize (){
             });
         }
 
-        select_tag(15);
+
+        d3.selectAll("a").on("click", function() {
+            
+            select_tag(this.text.toLowerCase(), "phrases");
+            nopulse =  true;
+            d3.selectAll("a").attr("class","unselected");
+            this.setAttribute("class", "selected");
+
+        });
 
 
     });

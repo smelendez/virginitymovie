@@ -1,0 +1,88 @@
+/**************************************************
+			      Global styles
+***************************************************/
+
+html, body {
+	font-family:Helvetica, serif;
+	background: #fff url(../images/bg.png);
+	background-repeat: repeat;
+   	width:100%;
+   	background-attachment: fixed;
+   	margin: 0;
+	padding: 0;
+	}
+	
+header{
+border-top: 15px solid #000;
+padding-bottom: 40px;
+	}
+
+#mainContent{
+	width: 1100px;
+	margin: 0 auto;
+}
+
+aside{
+float: left;
+width: 270px;
+}
+
+aside ul li {
+/*	border-radius: 15px;
+	background-color: #eee;
+		padding: 8px 12px;
+	margin: 10px 0 10px -15px;
+*/
+	width: 270px;
+	list-style: none;
+}
+
+aside ul li a{
+	text-decoration: none;
+	line-height: 24px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+	padding: 8px 10px;
+}
+
+aside ul li a:hover{
+	background-color: rgba(153,204,204,0.8);
+	padding: 8px 10px;
+}
+
+h1{
+	margin: 0 auto;
+	width: 600px;
+}
+button{
+	width: 200px;
+	margin: 30px auto;	
+	background: #000;
+	padding: 20px 30px;
+	border-radius: 15px;
+}
+button a{
+	color: #FFF;	
+	font-size: 20px;
+	
+}
+
+.image{
+	width: 288px;
+	margin: 0 auto;
+}
+
+.circles{
+	float: right;
+	width: 750px;
+}
+
+.clear{
+	clear: both;
+}
+footer{
+padding-top:40px;
+	border-bottom: 15px solid #000;	
+
+}

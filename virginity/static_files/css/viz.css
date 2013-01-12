@@ -1,9 +1,18 @@
 .node {
   stroke: #fff;
   stroke-width: 1.5px;
+  cursor: pointer;
 }
 
 .link {
-  stroke: #999;
+  stroke: red;
   stroke-opacity: .6;
+}
+
+#tooltip {
+    width: 75%;
+    height: 35px;
+    font-size: 20px;
+    color: red;
+
 }

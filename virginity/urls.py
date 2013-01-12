@@ -12,9 +12,11 @@ urlpatterns = patterns('',
     # url(r'^virginity/', include('virginity.foo.urls')),
 
 
-    url(r'^test.html', 'django.views.generic.simple.direct_to_template', {'template' : 'test.html'}),
+    url(r'^search.html', 'django.views.generic.simple.direct_to_template', {'template' : 'search.html'}),
+    url(r'^index.html', 'django.views.generic.simple.direct_to_template', {'template' : 'index.html'}),
     url(r'^api/allstories', 'firstperson.views.stories_basic'),
     url(r'^api/tag/(\d+)/stories', 'firstperson.views.stories_by_tag'),
+    url(r'^api/tag/(.+?)/(.+?)/stories', 'firstperson.views.stories_by_tag_name'),
     url(r'^api/tag/(\d+)', 'firstperson.views.tag'),
     url(r'^api/tags/(\w+)', 'firstperson.views.tags_by_category'),
     url(r'^api/story/(\d+)/tags', 'firstperson.views.tags_by_story'),
