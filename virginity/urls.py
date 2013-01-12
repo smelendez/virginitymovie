@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -9,9 +11,18 @@ urlpatterns = patterns('',
     # url(r'^$', 'virginity.views.home', name='home'),
     # url(r'^virginity/', include('virginity.foo.urls')),
 
+
+    url(r'^test.html', 'django.views.generic.simple.direct_to_template', {'template' : 'test.html'}),
+    url(r'^api/allstories', 'firstperson.views.stories_basic'),
+    url(r'^api/tag/(\d+)/stories', 'firstperson.views.stories_by_tag'),
+    url(r'^api/tag/(\d+)', 'firstperson.views.tag'),
+    url(r'^api/tags/(\w+)', 'firstperson.views.tags_by_category'),
+    url(r'^api/story/(\d+)/tags', 'firstperson.views.tags_by_story'),
+    url(r'^api/story/(\d+)', 'firstperson.views.story'),
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
 )
+urlpatterns += staticfiles_urlpatterns()

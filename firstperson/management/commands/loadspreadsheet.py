@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand, CommandError
 from firstperson.models import *
 from bs4 import BeautifulSoup
 import datetime
+import re
 import unicodecsv as csv
 import urllib2
 
@@ -98,6 +99,9 @@ class Command(BaseCommand):
                 
             for cat in demographic.split(','):
                 cat = cat.lower().strip()
+                if not cat:     
+                    continue
+                cat = re.sub("\s+", " ", cat)
 
 
                 tag = Tag.objects.get_or_create(name=cat, tagtype='demographic')[0]
@@ -110,6 +114,7 @@ class Command(BaseCommand):
                 cat = cat.lower().strip()
                 if not cat:     
                     continue
+                cat = re.sub("\s+", " ", cat)
                 tag = Tag.objects.get_or_create(name=cat, tagtype='emotional')[0]
                 tag.nstories+=1
                 tag.save()
@@ -119,6 +124,7 @@ class Command(BaseCommand):
                 cat = cat.lower().strip()
                 if not cat:     
                     continue
+                cat = re.sub("\s+", " ", cat)
                 tag = Tag.objects.get_or_create(name=cat, tagtype='phrases')[0]
                 tag.nstories+=1
                 tag.save()
