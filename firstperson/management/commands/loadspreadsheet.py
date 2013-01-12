@@ -51,14 +51,15 @@ class Command(BaseCommand):
             emotional = row['New Tags (Emotional)']
             phrases = row['New Tags (Phrases)']
             definition = row['virginity definition']
+            location = row['location']
             link = row['link']
+            age = row['age']
             year, month, day = [int(x) for x in date.split('.')]
             date = datetime.date(year, month, day)
 
             story = Story.objects.get_or_create(link=link, date = date)[0]
-            print story
 
-            print "here"
+
 
             story.name = name
             story.title = title
@@ -67,6 +68,14 @@ class Command(BaseCommand):
             story.aboutyou = aboutyou
             story.definition = definition
 
+            if age:
+                if '-' in age:
+                    story.minage, story.maxage = map(int, age.split("-"))
+                else:
+                    story.minage = story.maxage = int(age)
+
+
+            
             for cat in existingcats.split(','):
                 cat = cat.lower().strip()
                 if not cat:
@@ -76,20 +85,18 @@ class Command(BaseCommand):
 
                 story.tags.add(tag)
 
-            for cat in demographic.split(','):
-                cat = cat.strip()
+            for cat in location.split(','):
+                cat = cat.lower().strip()
 
                 if not cat:
                     continue
-                if cat[0].isupper():
-                    # Place
-                    place = Place.objects.get_or_create(name=cat)[0]
-                    story.places.add(place)
-                cat = cat.lower()
 
-                if cat.isdigit():
-                    # Age
-                    story.age = int(cat)
+                place = Place.objects.get_or_create(name=cat)[0]
+                story.places.add(place)
+                
+            for cat in demographic.split(','):
+                cat = cat.lower().strip()
+
 
                 tag = Tag.objects.get_or_create(name=cat, tagtype='demographic')[0]
 
