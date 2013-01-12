@@ -11,6 +11,8 @@ class Place(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length = 200)
     tagtype = models.CharField(max_length = 200)
+    nstories = models.IntegerField(default = 0)
+
 
     def __unicode__(self):
         return self.name

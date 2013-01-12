@@ -6,8 +6,11 @@ class StoryAdmin(admin.ModelAdmin):
     search_fields = ['title', 'name', 'text', 'age', 'tags__name', 'places__name']
     pass
 
+
 class TagAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'tagtype', 'nstories')
+    list_filter = ('tagtype',)
+    fields = ('name', 'tagtype')
 
 class PlaceAdmin(admin.ModelAdmin):
     pass

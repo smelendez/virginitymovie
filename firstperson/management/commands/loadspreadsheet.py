@@ -82,8 +82,10 @@ class Command(BaseCommand):
                     continue
 
                 tag = Tag.objects.get_or_create(name=cat, tagtype='existing')[0]
+                tag.nstories+=1
 
                 story.tags.add(tag)
+                tag.save()
 
             for cat in location.split(','):
                 cat = cat.lower().strip()
@@ -99,6 +101,8 @@ class Command(BaseCommand):
 
 
                 tag = Tag.objects.get_or_create(name=cat, tagtype='demographic')[0]
+                tag.nstories+=1
+                tag.save()
 
                 story.tags.add(tag)
 
@@ -106,7 +110,18 @@ class Command(BaseCommand):
                 cat = cat.lower().strip()
                 if not cat:     
                     continue
-                tag = Tag.objects.get_or_create(name=cat, tagtype='phrase')[0]
+                tag = Tag.objects.get_or_create(name=cat, tagtype='emotional')[0]
+                tag.nstories+=1
+                tag.save()
+
+                story.tags.add(tag)
+            for cat in phrases.split(','):
+                cat = cat.lower().strip()
+                if not cat:     
+                    continue
+                tag = Tag.objects.get_or_create(name=cat, tagtype='phrases')[0]
+                tag.nstories+=1
+                tag.save()
 
                 story.tags.add(tag)
 
