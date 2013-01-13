@@ -277,9 +277,10 @@ function initialize (){
                 this.value = "";
             }
         }).on("keyup", function () {
-            if (!this.value)
+            if (!this.value || this.value == "Search")
             {
                 this.value = "Search";
+                return;
             }
             if (d3.event.keyCode == 13)
             {
