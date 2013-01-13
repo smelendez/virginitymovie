@@ -42,7 +42,10 @@
 			    <li><a href="javascript:void(0);">I am socially awkward</a></li>
 			    <li><a href="javascript:void(0);">I hate my body</a></li>
 			    <li><a href="javascript:void(0);">I missed my chance</a></li>
-                            <li style="margin-top:15px;"><input id="searchbox" type="text" value="Search"></input></li>
+                            <li style="position: relative; margin-top:15px;"><input id="searchbox" type="text" value="Search"></input>
+                                <img height="20px" id="magglass" src="{% static "img/magnifying_glass.png" %}"></img>
+                            
+                            </li>
    		   </ul>
      </nav>
 </aside>
@@ -52,6 +55,9 @@
 </div>
 <div id="tooltip"></div>
 
+</div>
+<div id="submitbutton" style="color:rgba(189,40,46,1);">
+    <img width="150" id="submitimg" src="{% static "img/SubmitLogo.jpg" %}" />
 </div>
 <br class="clear">
 <footer>

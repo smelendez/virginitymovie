@@ -3,6 +3,7 @@
 ***************************************************/
 
 html, body {
+        font-family: Helvetica, Arial, sans-serif;
 	background: #fff url(../images/bg.png);
 	background-repeat: repeat;
    	width:100%;

@@ -32,7 +32,6 @@
     color: red;
     float: left;
     position: relative;
-    left: 50px;
     top: 75px;
 
 }
@@ -41,10 +40,25 @@
     padding-left: 10px;
     background-color: #eee;
     height: 25px;   
-    width: 240px;
+    width: 200px;
     border: none;
     font-weight: bold;
     font-family: "Helvetica Neue", sans-serif;
     
+
+}
+#magglass {
+    position: absolute;
+    right: 52px;
+    top: 3px;
+    z-index: 10;
+    cursor: pointer;
+
+}
+#submitbutton {
+    cursor: pointer;
+    position: absolute;
+    right: 225px;
+    bottom: 50px;
 
 }

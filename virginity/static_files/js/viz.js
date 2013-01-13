@@ -185,7 +185,7 @@ function initialize (){
             force.links(links);
             selected_tag = tag;
             d3.json("/api/tag/" + tag + "/" + category + "/stories", function (error, entries) {
-                node.style("fill","grey");
+                node.style("fill","#ccc");
                 entries.forEach(function(story) {
                     var storynode = nodemap[story.pk];
                     document.getElementById(story.pk).style.fill="red";
@@ -219,7 +219,7 @@ function initialize (){
             links = [];
             force.links(links);
             d3.json("/api/search/" + term + "/stories", function (error, entries) {
-                node.style("fill", "grey");
+                node.style("fill", "#ccc");
                 entries.forEach(function(story) {
                     var storynode = nodemap[story.pk];
                     document.getElementById(story.pk).style.fill="red";
@@ -271,26 +271,36 @@ function initialize (){
             return false;
 
         }, true);
+        function search_submit() {
+            var searchbox = document.getElementById("searchbox");
+            if (!searchbox.value || searchbox.value == "Search")
+            {
+                searchbox.value = "Search";
+                return;
+            }
+            // Enter
+            d3.select("#popup").style("display", "none");
+            search(searchbox.value);
+            nopulse =  true;
+            d3.selectAll("a").attr("class","unselected");
+
+        }
         d3.select("#searchbox").on("click", function() {
             if (this.value == "Search")
             {
                 this.value = "";
             }
         }).on("keyup", function () {
-            if (!this.value || this.value == "Search")
-            {
-                this.value = "Search";
-                return;
-            }
             if (d3.event.keyCode == 13)
             {
-                // Enter
-                d3.select("#popup").style("display", "none");
-                search(this.value);
-                nopulse =  true;
-                d3.selectAll("a").attr("class","unselected");
+                search_submit();
             }
         });
+
+        d3.select("#magglass").on("click", function () {
+            search_submit();
+
+        }, true);
 
 
     });
