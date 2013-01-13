@@ -25,7 +25,7 @@ function nodemouseover(d) {
         this.style.fill = "red";
     }
     d3.select("#popup").style("display", "none");
-    d3.select("#tooltip").text((d.fields.name || "Anon") + ': ' + d.fields.title);
+    d3.select("#tooltip").html('<span class="tooltipname">' + (d.fields.name || "Anon") + ':</span> ' + d.fields.title);
 
 }
 function nodemouseout(d) {

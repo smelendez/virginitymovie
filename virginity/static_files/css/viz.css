@@ -27,7 +27,8 @@
     height: 200px;
     font-size: 22px;
     font-family: Helvetica;
-    line-height: 28px;
+    line-height: 30px;
+    left: 5px;
     color: red;
     font-weight: bold;
     float: left;
@@ -58,12 +59,16 @@
 #submitbutton {
     cursor: pointer;
     position: absolute;
-    right: 225px;
-    bottom: 50px;
+    right: 70px;
+    bottom: 20px;
 
 }
 aside {
     position: relative;
     top: 5px;
+
+}
+.tooltipname {
+    font-size: 26px;
 
 }
