@@ -1,12 +1,63 @@
 #container {
-    width: 60%;
+    width: 55%;
     margin: auto;
-    font-family: "Times New Roman", serif;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: justify;
+}
+#storytext img {
+    display: none;
+
+}
+#storytext {
+    line-height: 24px;
+    font-size: 16px;
+
 }
 #title {
-    font-size: 24px;
+    font-size: 28px;
+    color: #000;
+    padding-bottom: 25px;
+    font-weight: bold;
+}
+#tag {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+    padding-bottom: 25px;
+
+}
+#numberandlink {
+   float: left; 
+
 }
 #byline {
    font-size: 16px; 
+
+}
+#bannercherry {
+    float: right;
+    position: relative;
+    left: 5%;
+
+}
+header {
+    height: 100px;
+    width: 100%;
+
+}
+#homelink {
+    text-decoration: none;
+    color: black;
+    float: left;
+    font-size: 20px;
+    position: relative;
+    top: 35px;
+    font-weight: bold;
+}
+#homelink:hover {
+
+}
+#nextlink, #prevlink {
+    font-weight: bold;
 
 }

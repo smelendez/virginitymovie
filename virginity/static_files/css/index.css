@@ -13,8 +13,6 @@ html, body {
 	}
 	
 header{
-border-top: 15px solid #000;
-padding-bottom: 40px;
 	}
 
 #mainContent{
@@ -71,6 +69,11 @@ button a{
 .image{
 	width: 288px;
 	margin: 0 auto;
+        position: relative;
+}
+#cherrylogo {
+    position:absolute; 
+    left:85%; top: 15%
 }
 
 .circles{
@@ -82,7 +85,22 @@ button a{
 	clear: both;
 }
 footer{
-padding-top:40px;
-	border-bottom: 15px solid #000;	
+
+}
+#virginity {
+    font-size: 24px;
+
+}
+#typewriter {
+    height: 50px;
+    padding-top: 25px;
+
+}
+#tales {
+    font-weight: bold;
+}
+#tales a {
+    color: red;
+    text-decoration: none;
 
 }

@@ -5,6 +5,10 @@
 <meta charset="UTF-8">
 <title>Home</title>
     <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="{% static "js/d3.min.js" %}"></script>
 
 </head>
 
@@ -14,17 +18,25 @@
 <div id="mainContent">
 
 <div class="image">
+
+<a href="search.html" id="logolink">
 <img src="{% static "img/cherry.jpg" %}" alt="cherry"/>
+<img src="{% static "img/FirstPersonLogo.jpg" %}" width="250" style="" id="cherrylogo" />
+</a>
 </div>
+<center>
+<div id="virginity">VIRGINITY:</div>
+<div id="typewriter"></div>
 
-<h1>tales of sexual debuts and deferrals</h1>
+<div id="tales">tales of sexual debuts and deferrals <a href="search.html">enter</a></div>
 
-<center><button> <a href="search.html">Enter</a></button></center>
+</center>
 
 </div>
 <br class="clear">
 <footer>
 </footer>
+    <script src="{% static "js/typewriter.js" %}"></script>
 </body>
 
 </html>

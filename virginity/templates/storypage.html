@@ -5,14 +5,58 @@
 <meta charset="UTF-8">
 <title> {{ story.title }} | First Person </title>
 <link rel="stylesheet" type="text/css" href="{% static "css/storypage.css" %}"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
     <div id="container">
+    <header>
+    <a href="/search.html" id="homelink">home</a>
+    {% if tag %}
+    <div id="numberandlink">
+        {% if prevlink %} 
+            <a id="prevlink" href="{{ prevlink }}">prev&lt;&lt; </a>  
+        {% endif %}
+
+     {{ thisnum }} of {{ totalnum }} 
+
+        {% if nextlink %} 
+            <a id="nextlink" href="{{ nextlink }}"> next&gt;&gt;</a>  
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+    <img src="{% static "img/StoryBanner.jpg" %}" id="bannercherry" width="400px"/>
+    </header>
+
+        {% if tag %}
+        <div id="tag"> {{tag.name}} </div>
+
+        {% endif %}
+        {% if story.name %}
         <div id="title"> {{story.name}}: {{ story.title }} </div>
+        {% else %}
+        <div id="title"> Anonymous: {{ story.title }} </div>
+        {% endif %}
 
         <div id="storytext">
         {{ story.text|safe }}
         </div>
     </div>
+<script>
+    $(document).ready(function() {
+        $('span').css('color', 'black');
+        $('#container a').css({
+            'color' : 'black',
+            'text-decoration' : 'none'
+
+        });
+        $('#container:first-child').css({
+
+        });
+    });
+
+</script>
 </body>
 </html>

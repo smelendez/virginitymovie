@@ -53,6 +53,44 @@ def story(request, storyid):
     data = serializers.serialize('json', [story])
     return HttpResponse(data)
 
+def story_with_tag(request, storyid, tagname, tagcat):
+    story = Story.objects.get(id=storyid)
+    tag = Tag.objects.get(name=tagname, tagtype=tagcat)
+    tagid = tag.pk
+    t = get_template('storypage.html')
+    stories = tag.stories.all()
+
+    nstories = len(stories)
+
+    for i, tagstory in enumerate(stories):
+        if str(tagstory.pk) == str(storyid):
+            storyindex = i
+            break
+
+    if storyindex == 0:
+        prevlink = None
+        nextlink = "/stories/%s/%s" % (stories[1], tagid)
+    elif storyindex == nstories-1:
+        prevlink = "/stories/%s/%s" % (stories[storyindex-1], tagid)
+        nextlink = None
+    else:
+        prevlink = "/stories/%s/%s" % (stories[storyindex-1], tagid)
+        nextlink = "/stories/%s/%s" % (stories[storyindex+1], tagid)
+        
+
+    html = t.render(Context({'story' : story, 'prevlink' : prevlink, 'nextlink' : nextlink, 'tag': tag, 'thisnum' : storyindex+1, 'totalnum' : nstories}))
+    return HttpResponse(html)
+
+
+
+
+    
+    
+
+
+
+
+
 
 
     
