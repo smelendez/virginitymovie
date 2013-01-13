@@ -73,8 +73,8 @@ button a{
 }
 #cherrylogo {
     position:absolute; 
-    left:85%; 
-    top: 17%;
+    left:80%; 
+    top: 22%;
 }
 
 .circles{
@@ -93,7 +93,7 @@ footer{
 
 }
 #typewriter {
-    height: 150px;
+    height: 100px;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 40px;

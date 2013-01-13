@@ -14,24 +14,24 @@
     {% if tag %}
     <div id="numberandlink">
         {% if prevlink %} 
-            <a id="prevlink" href="{{ prevlink }}"> prev &lt;&lt; </a>  
+            <a id="prevlink" href="{{ prevlink }}"> prev &lt; </a>  
         {% endif %}
 
      {{ thisnum }} of {{ totalnum }} 
 
         {% if nextlink %} 
-            <a id="nextlink" href="{{ nextlink }}"> next &gt;&gt; </a>  
+            <a id="nextlink" href="{{ nextlink }}"> next &gt; </a>  
         {% endif %}
 
     </div>
 
     {% endif %}
 
-    <img src="{% static "img/StoryBanner.jpg" %}" id="bannercherry" width="400px"/>
+    <img src="{% static "img/StoryBanner.jpg" %}" id="bannercherry" width="300px"/>
     </header>
 
         {% if tag %}
-        <div id="tag"> {{tag.name}} </div>
+        <div id="tag">{{tag.name}}</div>
 
         {% endif %}
         {% if story.name %}
@@ -55,6 +55,9 @@
         $('#container:first-child').css({
 
         });
+        var tag = $('#tag').text();
+
+        $('#tag').html(tag[0].toUpperCase() + tag.substr(1));
     });
 
 </script>

@@ -30,7 +30,7 @@ width: 270px;
     font-weight: bold;
     margin-left: 1en;
     padding-left: 48px;
-    font-size: 18px;
+    font-size: 15px;
     padding-bottom: 10px;
 
 }
@@ -53,6 +53,9 @@ aside ul li {
 	list-style: none;
 }
 
+aside ul li {
+
+}
 aside ul li a{
 	text-decoration: none;
 	line-height: 24px;
@@ -97,6 +100,8 @@ button{
 .circles{
 	float: left;
 	width: 500px;
+        position: relative;
+        top: 5px;
 }
 
 .clear{
@@ -108,6 +113,6 @@ footer{
 #bannercherryimg {
     position: absolute;
     right: 75px;
-    top: -15px;
+    top: -25px;
 
 }

@@ -24,12 +24,12 @@
 
 #tooltip {
     width: 300px;
-    text-align: justify;
     height: 200px;
-    font-size: 20px;
-    font-family: ;
+    font-size: 22px;
+    font-family: Helvetica;
     line-height: 28px;
     color: red;
+    font-weight: bold;
     float: left;
     position: relative;
     top: 75px;
@@ -60,5 +60,10 @@
     position: absolute;
     right: 225px;
     bottom: 50px;
+
+}
+aside {
+    position: relative;
+    top: 5px;
 
 }
