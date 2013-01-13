@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^api/tags/(\w+)', 'firstperson.views.tags_by_category'),
     url(r'^api/story/(\d+)/tags', 'firstperson.views.tags_by_story'),
     url(r'^api/story/(\d+)', 'firstperson.views.story'),
+
+    url(r'^story/(\d+)', 'firstperson.views.story_page'),
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

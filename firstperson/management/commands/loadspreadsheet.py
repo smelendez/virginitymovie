@@ -30,7 +30,7 @@ class Command(BaseCommand):
         content = {}
 
         for item in soup("item"):
-            content[item.link.text] = BeautifulSoup(item.find('content:encoded').text).text
+            content[item.link.text] = item.find('content:encoded').text.replace("\r","<br />")
             
             
             

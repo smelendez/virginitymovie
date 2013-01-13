@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+{% load staticfiles %}
+<meta charset="UTF-8">
+<title> {{ story.title }} | First Person </title>
+<link rel="stylesheet" type="text/css" href="{% static "css/storypage.css" %}"/>
+</head>
+<body>
+    <div id="container">
+        <div id="title"> {{story.name}}: {{ story.title }} </div>
+
+        <div id="storytext">
+        {{ story.text|safe }}
+        </div>
+    </div>
+</body>
+</html>

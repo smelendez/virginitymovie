@@ -1,7 +1,7 @@
 var freeze = false;
 var nopulse = false;
 function nodeclick(d) {
-    open(d.fields.link);
+    open("/story/" + d.pk);
 
 }
 function randInt(x, y) {

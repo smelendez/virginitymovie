@@ -1,3 +1,6 @@
+from django.template import Context, Template
+from django.template.loader import get_template
+
 from django.http import HttpResponse
 from django.core import serializers
 # Create your views here.
@@ -5,10 +8,16 @@ from firstperson.models import *
 
 def stories_by_tag_name(request, tagname, tagcat):
     tag = Tag.objects.get(name=tagname, tagtype=tagcat)
-
     stories = tag.stories.all()
-
     return HttpResponse(serializers.serialize('json', stories, fields = ('link',)))
+
+def story_page(request, storyid):
+    story = Story.objects.get(id=storyid)
+    t = get_template('storypage.html')
+    html = t.render(Context({'story' : story}))
+
+    return HttpResponse(html)
+
 def stories_basic(request):
     data = serializers.serialize('json', Story.objects.all(), fields = ('id', 'name', 'title', 'firstgraf', 'minage', 'maxage', 'aboutyou', 'link', 'definition'))
     return HttpResponse(data)

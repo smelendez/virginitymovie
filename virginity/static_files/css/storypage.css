@@ -1,0 +1,12 @@
+#container {
+    width: 60%;
+    margin: auto;
+    font-family: "Times New Roman", serif;
+}
+#title {
+    font-size: 24px;
+}
+#byline {
+   font-size: 16px; 
+
+}
