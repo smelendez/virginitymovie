@@ -3,7 +3,6 @@
 ***************************************************/
 
 html, body {
-	font-family:Helvetica, serif;
 	background: #fff url(../images/bg.png);
 	background-repeat: repeat;
    	width:100%;
@@ -13,8 +12,7 @@ html, body {
 	}
 	
 header{
-border-top: 15px solid #000;
-padding-bottom: 40px;
+    padding-top: 25px;
 	}
 
 #mainContent{
@@ -70,11 +68,11 @@ aside ul li a:hover, a.selected{
 
 @font-face {
     font-family: 'trixie-plainplain';
-    src: url('font/trixie-plain-webfont.eot');
-    src: url('font/trixie-plain-webfont.eot?#iefix') format('embedded-opentype'),
-         url('font/trixie-plain-webfont.woff') format('woff'),
-         url('font/trixie-plain-webfont.ttf') format('truetype'),
-         url('font/trixie-plain-webfont.svg#trixie-plainplain') format('svg');
+    src: url('/static/css/font/trixie-plain-webfont.eot');
+    src: url('/static/css/font/trixie-plain-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/static/css/font/trixie-plain-webfont.woff') format('woff'),
+         url('/static/css/font/trixie-plain-webfont.ttf') format('truetype'),
+         url('/static/css/font/trixie-plain-webfont.svg#trixie-plainplain') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -104,13 +102,11 @@ button{
 	clear: both;
 }
 footer{
-padding-top:40px;
-	border-bottom: 15px solid #000;	
 
 }
 #bannercherryimg {
     position: absolute;
-    right: 195px;
-    top: 15px;
+    right: 75px;
+    top: -15px;
 
 }

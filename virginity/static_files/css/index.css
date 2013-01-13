@@ -3,7 +3,7 @@
 ***************************************************/
 
 html, body {
-	font-family:Helvetica, serif;
+        font-family: Helvetica, Arial, sans-serif;
 	background: #fff url(../images/bg.png);
 	background-repeat: repeat;
    	width:100%;
@@ -88,12 +88,15 @@ footer{
 
 }
 #virginity {
-    font-size: 24px;
+    font-size: 40px;
 
 }
 #typewriter {
-    height: 50px;
-    padding-top: 25px;
+    height: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 40px;
+
 
 }
 #tales {
@@ -102,5 +105,12 @@ footer{
 #tales a {
     color: red;
     text-decoration: none;
+
+}
+#virginity,#typewriter {
+	font-family: 'trixie-plainplain',georgia, serif;
+
+}
+#logolink {
 
 }

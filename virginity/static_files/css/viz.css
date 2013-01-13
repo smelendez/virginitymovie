@@ -23,7 +23,8 @@
 }
 
 #tooltip {
-    width: 200px;
+    width: 300px;
+    text-align: justify;
     height: 200px;
     font-size: 20px;
     font-family: ;
