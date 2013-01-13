@@ -6,6 +6,10 @@ from django.core import serializers
 # Create your views here.
 from firstperson.models import *
 
+def api_search(request, searchterm):
+    stories = Story.objects.filter(text__icontains=searchterm)
+    return HttpResponse(serializers.serialize('json', stories, fields = ('link',)))
+
 def stories_by_tag_name(request, tagname, tagcat):
     tag = Tag.objects.get(name=tagname, tagtype=tagcat)
     stories = tag.stories.all()

@@ -203,6 +203,44 @@ function initialize (){
             });
         }
 
+        function search(term) {
+            var tagnodes = [];
+            links = [];
+            force.links(links);
+            d3.json("/api/search/" + term + "/stories", function (error, entries) {
+                node.style("fill", "grey");
+                entries.forEach(function(story) {
+                    var storynode = nodemap[story.pk];
+                    document.getElementById(story.pk).style.fill="red";
+
+                    var ntagnodes = tagnodes.length;
+                    tagnodes.push(storynode);
+
+                    if (ntagnodes > 0)
+                    {
+                        links.push({source: storynode, target: tagnodes[Math.floor(Math.random() * ntagnodes)]});
+                    }
+                    
+
+                });
+
+                link.data([]);
+                link = link.data(links);
+
+                link.enter().insert("line", ".node")
+                    .attr("class", "link");
+                link.exit().remove();
+
+                force.start();
+                
+
+            });
+        
+
+
+
+        }
+
 
         d3.select("aside").on("click", function() {
             d3.selectAll("a").attr("class","unselected");
@@ -221,6 +259,22 @@ function initialize (){
             return false;
 
         }, true);
+        d3.select("#searchbox").on("click", function() {
+            if (this.value == "Search")
+            {
+                this.value = "";
+            }
+        }).on("keyup", function () {
+            console.log(d3.event);
+            if (d3.event.keyCode == 13)
+            {
+                // Enter
+                d3.select("#popup").style("display", "none");
+                search(this.value);
+                nopulse =  true;
+                d3.selectAll("a").attr("class","unselected");
+            }
+        });
 
 
     });

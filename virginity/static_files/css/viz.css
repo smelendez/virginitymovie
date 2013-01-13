@@ -35,3 +35,13 @@
     top: 75px;
 
 }
+#searchbox {
+    margin-left: 10px;
+    padding-left: 10px;
+    background-color: #eee;
+    height: 25px;   
+    width: 200px;
+    border: none;
+    
+
+}
