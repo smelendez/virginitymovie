@@ -68,8 +68,23 @@ aside ul li a:hover, a.selected{
 	padding: 8px 10px;
 }
 
+@font-face {
+    font-family: 'trixie-plainplain';
+    src: url('font/trixie-plain-webfont.eot');
+    src: url('font/trixie-plain-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/trixie-plain-webfont.woff') format('woff'),
+         url('font/trixie-plain-webfont.ttf') format('truetype'),
+         url('font/trixie-plain-webfont.svg#trixie-plainplain') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 h1{
-	
+	margin: 0 auto;
+	width: 700px;
+	font-family: 'trixie-plainplain',georgia, serif;
+
 }
 
 button{
