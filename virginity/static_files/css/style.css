@@ -18,7 +18,7 @@ padding-bottom: 40px;
 	}
 
 #mainContent{
-	width: 1100px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -27,6 +27,23 @@ float: left;
 width: 270px;
 }
 
+#navheader,#circleheader {
+    font-weight: bold;
+    margin-left: 1en;
+    padding-left: 48px;
+    font-size: 18px;
+    padding-bottom: 10px;
+
+}
+#circleheader {
+    position: absolute;
+    left: 20px;
+
+}
+aside ul {
+    -webkit-margin-before: 0px;
+
+}
 aside ul li {
 /*	border-radius: 15px;
 	background-color: #eee;
@@ -42,7 +59,7 @@ aside ul li a{
 	line-height: 24px;
 	font-size: 16px;
 	font-weight: bold;
-	color: #000;
+	color: #333;
 	padding: 8px 10px;
 }
 
@@ -64,8 +81,8 @@ button{
 }
 
 .circles{
-	float: right;
-	width: 750px;
+	float: left;
+	width: 500px;
 }
 
 .clear{
@@ -74,5 +91,11 @@ button{
 footer{
 padding-top:40px;
 	border-bottom: 15px solid #000;	
+
+}
+#bannercherryimg {
+    position: absolute;
+    right: 195px;
+    top: 15px;
 
 }

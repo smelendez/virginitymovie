@@ -1,5 +1,6 @@
 var freeze = false;
 var nopulse = false;
+var svg;
 function nodeclick(d) {
     open("/story/" + d.pk);
 
@@ -9,18 +10,28 @@ function randInt(x, y) {
 }
 function nodemouseover(d) {
     freeze = true;
-    d3.select("#tooltip").text(d.fields.title);
+    if(!nopulse)
+    {
+        svg.selectAll(".node").style("fill","grey");
+        this.style.fill = "red";
+    }
+    d3.select("#popup").style("display", "none");
+    d3.select("#tooltip").text((d.fields.name || "Anon") + ': ' + d.fields.title);
 
 }
 function nodemouseout(d) {
     freeze = false;
+    if (!nopulse)
+    {
+        this.style.fill = "grey";
+    }
     d3.select("#tooltip").text("");
 }
 
 function initialize (){
 
     var nodemap = {};
-    var width = 960;
+    var width = 600;
     var height = 500;
 
     var force = d3.layout.force()
@@ -51,7 +62,7 @@ function initialize (){
         .attr("class", "node")
         .attr("r", function(d) {var r= randInt(5, 10); if (r > 7) {d.up = true;} else d.up = false; return r;})
         .style("fill", "grey")
-        .on("click", nodeclick)
+        .on("click", nodeclick, true)
         .on("mouseover", nodemouseover)
         .on("mouseout", nodemouseout)
         .attr("id", function(d) {return d.pk;})
@@ -78,11 +89,44 @@ function initialize (){
 
         }); // tick
 
-        d3.timer(function(){
-            var amount = 0.1;
-            if(freeze) return;
+        var timertick = 0;
+        setInterval(function(){
+            if(freeze) 
+            {
+                timertick = 0;
+                d3.select("popup")
+                .style("display", "none");
+                return;
+            }
             if (nopulse) {
+                timertick = 0;
                 node.attr("r", 7.5);
+                return;
+
+            }
+            var amount = 0.1;
+            timertick +=1;
+
+            if (timertick % 15 == 0)
+            {
+                // Show popup
+                var allnodes = entries;
+                var numnodes = allnodes.length;
+                var randnode = allnodes[randInt(0, numnodes)];
+                var cx = randnode.x;
+                var cy = randnode.y;
+                var r = 5;
+                node.style("fill", "grey");
+
+
+                d3.select("#popup")
+                    .style("display", "block")
+                    .style("top", cy + r + "px")
+                    .style("left", cx + r + "px")
+                    .text(randnode.fields.name || "Anon");
+
+                document.getElementById(randnode.pk).style.fill="red";
+
 
             }
             
@@ -115,9 +159,16 @@ function initialize (){
 
             });
 
-        }, 1000);
+        }, 100);
 
 
+        function no_tag() {
+            link = link.data([]);
+            link.exit().remove();
+            node.style("fill", "grey");
+            force.start();
+
+        }
         function select_tag(tag, category){
             var tagnodes = [];
             links = [];
@@ -153,14 +204,23 @@ function initialize (){
         }
 
 
+        d3.select("aside").on("click", function() {
+            d3.selectAll("a").attr("class","unselected");
+            no_tag();
+            nopulse = false;
+            
+
+        }, true);
         d3.selectAll("a").on("click", function() {
             
+            d3.select("#popup").style("display", "none");
             select_tag(this.text.toLowerCase(), "phrases");
             nopulse =  true;
             d3.selectAll("a").attr("class","unselected");
             this.setAttribute("class", "selected");
+            return false;
 
-        });
+        }, true);
 
 
     });

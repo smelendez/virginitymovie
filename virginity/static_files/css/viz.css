@@ -3,6 +3,19 @@
   stroke-width: 1.5px;
   cursor: pointer;
 }
+#popup {
+    position: absolute;
+    background-color: red;
+    padding: 5px;
+    color: white;
+    display: none;
+
+
+}
+#circles {
+    position: relative;
+
+}
 
 .link {
   stroke: red;
@@ -10,9 +23,15 @@
 }
 
 #tooltip {
-    width: 75%;
-    height: 35px;
+    width: 200px;
+    height: 200px;
     font-size: 20px;
+    font-family: Impact;
+    line-height: 28px;
     color: red;
+    float: left;
+    position: relative;
+    left: 50px;
+    top: 75px;
 
 }
