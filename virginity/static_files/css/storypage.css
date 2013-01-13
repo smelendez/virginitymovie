@@ -24,10 +24,14 @@
     font-weight: bold;
     color: red;
     padding-bottom: 25px;
+    text-transform: capitalize;
 
 }
 #numberandlink {
    float: left; 
+   position: relative;
+   top: 37px;
+   left: 25px;
 
 }
 #byline {

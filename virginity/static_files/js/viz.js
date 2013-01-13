@@ -1,8 +1,17 @@
 var freeze = false;
 var nopulse = false;
 var svg;
+var selected_tag = null;
 function nodeclick(d) {
-    open("/story/" + d.pk);
+    if (selected_tag)
+    {
+        open("/story/" + d.pk + "/tag/" + selected_tag + "/phrases");
+
+    }
+    else
+    {
+        open("/story/" + d.pk);
+    }
 
 }
 function randInt(x, y) {
@@ -167,12 +176,14 @@ function initialize (){
             link.exit().remove();
             node.style("fill", "grey");
             force.start();
+            selected_tag = null;
 
         }
         function select_tag(tag, category){
             var tagnodes = [];
             links = [];
             force.links(links);
+            selected_tag = tag;
             d3.json("/api/tag/" + tag + "/" + category + "/stories", function (error, entries) {
                 node.style("fill","grey");
                 entries.forEach(function(story) {
@@ -246,6 +257,7 @@ function initialize (){
             d3.selectAll("a").attr("class","unselected");
             no_tag();
             nopulse = false;
+            document.getElementById("searchbox").value = "Search";
             
 
         }, true);

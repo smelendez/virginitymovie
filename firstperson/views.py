@@ -55,27 +55,31 @@ def story(request, storyid):
 
 def story_with_tag(request, storyid, tagname, tagcat):
     story = Story.objects.get(id=storyid)
-    tag = Tag.objects.get(name=tagname, tagtype=tagcat)
+    try: tag = Tag.objects.get(name=tagname, tagtype=tagcat)
+    except: return story_page(request, storyid)
     tagid = tag.pk
     t = get_template('storypage.html')
     stories = tag.stories.all()
 
     nstories = len(stories)
+    storyindex = None
 
     for i, tagstory in enumerate(stories):
         if str(tagstory.pk) == str(storyid):
             storyindex = i
             break
+    if storyindex == None:
+        return story_page(request, storyid)
 
     if storyindex == 0:
-        prevlink = None
-        nextlink = "/stories/%s/%s" % (stories[1], tagid)
+        prevlink = "/story/%s/tag/%s/%s" % (stories[nstories-1].pk, tagname, tagcat)
+        nextlink = "/story/%s/tag/%s/%s" % (stories[1].pk, tagname, tagcat)
     elif storyindex == nstories-1:
-        prevlink = "/stories/%s/%s" % (stories[storyindex-1], tagid)
-        nextlink = None
+        prevlink = "/story/%s/tag/%s/%s" % (stories[storyindex-1].pk, tagname, tagcat)
+        nextlink = "/story/%s/tag/%s/%s" % (stories[0].pk, tagname, tagcat)
     else:
-        prevlink = "/stories/%s/%s" % (stories[storyindex-1], tagid)
-        nextlink = "/stories/%s/%s" % (stories[storyindex+1], tagid)
+        prevlink = "/story/%s/tag/%s/%s" % (stories[storyindex-1].pk, tagname, tagcat)
+        nextlink = "/story/%s/tag/%s/%s" % (stories[storyindex+1].pk, tagname, tagcat)
         
 
     html = t.render(Context({'story' : story, 'prevlink' : prevlink, 'nextlink' : nextlink, 'tag': tag, 'thisnum' : storyindex+1, 'totalnum' : nstories}))

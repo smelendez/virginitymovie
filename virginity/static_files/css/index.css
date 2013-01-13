@@ -73,7 +73,8 @@ button a{
 }
 #cherrylogo {
     position:absolute; 
-    left:85%; top: 15%
+    left:85%; 
+    top: 17%;
 }
 
 .circles{
@@ -101,6 +102,7 @@ footer{
 }
 #tales {
     font-weight: bold;
+    font-size: 20px;
 }
 #tales a {
     color: red;
