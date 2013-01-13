@@ -277,7 +277,10 @@ function initialize (){
                 this.value = "";
             }
         }).on("keyup", function () {
-            console.log(d3.event);
+            if (!this.value)
+            {
+                this.value = "Search";
+            }
             if (d3.event.keyCode == 13)
             {
                 // Enter
