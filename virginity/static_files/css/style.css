@@ -116,3 +116,11 @@ footer{
     top: -25px;
 
 }
+#recentsearch {
+    margin-top: 25px;
+
+}
+#recentsearch a {
+    color: black;
+
+}

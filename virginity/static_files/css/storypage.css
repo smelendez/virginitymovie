@@ -2,7 +2,6 @@
     width: 55%;
     margin: auto;
     font-family: Helvetica, Arial, sans-serif;
-    text-align: justify;
 }
 #storytext img {
     display: none;
@@ -60,5 +59,9 @@ header {
 
 }
 #nextlink, #prevlink {
+
+}
+#social {
+    padding-top: 30px;
 
 }

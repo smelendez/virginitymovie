@@ -53,6 +53,10 @@ function initialize (){
         .attr("height", height);
 
 
+    function highlight_stories(error, entries) {
+
+
+    }
 
     d3.json("/api/allstories", function (error, entries) {
         var links = [];
@@ -179,13 +183,11 @@ function initialize (){
             selected_tag = null;
 
         }
-        function select_tag(tag, category){
-            var tagnodes = [];
-            links = [];
-            force.links(links);
-            selected_tag = tag;
-            d3.json("/api/tag/" + tag + "/" + category + "/stories", function (error, entries) {
+        function select_entries(error, entries) {
+                links = [];
+                force.links(links);
                 node.style("fill","#ccc");
+                var tagnodes = [];
                 entries.forEach(function(story) {
                     var storynode = nodemap[story.pk];
                     document.getElementById(story.pk).style.fill="red";
@@ -211,41 +213,25 @@ function initialize (){
                 force.start();
                 
 
-            });
+
+        }
+
+        function select_recent() {
+            d3.json("/api/recent/", select_entries);
+
+        }
+        function select_tag(tag, category){
+            var tagnodes = [];
+            selected_tag = tag;
+            d3.json("/api/tag/" + tag + "/" + category + "/stories", select_entries);
+            
         }
 
         function search(term) {
             var tagnodes = [];
             links = [];
             force.links(links);
-            d3.json("/api/search/" + term + "/stories", function (error, entries) {
-                node.style("fill", "#ccc");
-                entries.forEach(function(story) {
-                    var storynode = nodemap[story.pk];
-                    document.getElementById(story.pk).style.fill="red";
-
-                    var ntagnodes = tagnodes.length;
-                    tagnodes.push(storynode);
-
-                    if (ntagnodes > 0)
-                    {
-                        links.push({source: storynode, target: tagnodes[Math.floor(Math.random() * ntagnodes)]});
-                    }
-                    
-
-                });
-
-                link.data([]);
-                link = link.data(links);
-
-                link.enter().insert("line", ".node")
-                    .attr("class", "link");
-                link.exit().remove();
-
-                force.start();
-                
-
-            });
+            d3.json("/api/search/" + term + "/stories", select_entries);
         
 
 
@@ -262,6 +248,18 @@ function initialize (){
 
         }, true);
         d3.selectAll("a").on("click", function() {
+            
+            if (this.text == "Show recent stories")
+            {
+                d3.select("#popup").style("display", "none");
+                nopulse =  true;
+                select_recent();
+                d3.selectAll("a").attr("class","unselected");
+                this.setAttribute("class", "selected");
+                return false;
+                
+
+            }
             
             d3.select("#popup").style("display", "none");
             select_tag(this.text.toLowerCase(), "phrases");

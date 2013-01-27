@@ -56,6 +56,13 @@
     cursor: pointer;
 
 }
+#gotofilmbutton {
+    cursor: pointer;
+    position: absolute;
+    right:70px;
+    bottom: 200px;
+
+}
 #submitbutton {
     cursor: pointer;
     position: absolute;
