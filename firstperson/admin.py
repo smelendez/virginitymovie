@@ -1,10 +1,20 @@
 from django.contrib import admin
 from firstperson.models import *
+from tinymce.widgets import TinyMCE
+import django.forms as forms
 
+class StoryAdminForm(forms.ModelForm):
+    class Meta:
+        model = Story
+        widgets = {
+            'text' : TinyMCE(attrs={'cols' : 100, 'rows' : 40})
+        }
+class DefinitionAdmin(admin.ModelAdmin):
+    pass
 class StoryAdmin(admin.ModelAdmin):
     filter_horizontal = ['tags', 'places']
     search_fields = ['title', 'name', 'text', 'age', 'tags__name', 'places__name']
-    pass
+    form = StoryAdminForm
 
 
 class TagAdmin(admin.ModelAdmin):
@@ -18,3 +28,4 @@ class PlaceAdmin(admin.ModelAdmin):
 admin.site.register(Place, PlaceAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Story, StoryAdmin)
+admin.site.register(Definition, DefinitionAdmin)

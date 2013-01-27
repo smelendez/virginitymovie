@@ -4,7 +4,7 @@ anyjson==0.3.3
 beautifulsoup4==4.1.3
 distribute==0.6.31
 dj-database-url==0.2.1
-nltk==2.0.4
+django-tinymce==1.5.1b4
 psycopg2==2.4.6
 unicodecsv==0.9.0
 wsgiref==0.1.2

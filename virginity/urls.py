@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template
+import tinymce
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -20,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^api/tag/(.+?)/(.+?)/stories', 'firstperson.views.stories_by_tag_name'),
     url(r'^api/tag/(\d+)', 'firstperson.views.tag'),
     url(r'^api/recent', 'firstperson.views.api_recent'),
+    url(r'^api/definitions', 'firstperson.views.api_definitions'),
     url(r'^api/tags/(\w+)', 'firstperson.views.tags_by_category'),
     url(r'^api/search/(.+?)/stories', 'firstperson.views.api_search'),
     url(r'^api/story/(\d+)/tags', 'firstperson.views.tags_by_story'),
@@ -32,5 +34,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
+     url(r'^tinymce/', include('tinymce.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()

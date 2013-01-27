@@ -4,15 +4,22 @@ from django.template.loader import get_template
 from django.http import HttpResponse
 from django.core import serializers
 from datetime import datetime, timedelta
+import json
 # Create your views here.
 from firstperson.models import *
 
 def api_recent(request):
     stories = Story.objects.filter(date__gte=datetime.today()-timedelta(days=30))
     return HttpResponse(serializers.serialize('json', stories, fields = ('link',)))
+
 def api_search(request, searchterm):
     stories = Story.objects.filter(text__icontains=searchterm)
     return HttpResponse(serializers.serialize('json', stories, fields = ('link',)))
+
+def api_definitions(request):
+    definitions = [definition.text for definition in Definition.objects.all()]
+    return HttpResponse(json.dumps(definitions))
+
 
 def stories_by_tag_name(request, tagname, tagcat):
     tagname = tagname.strip()
