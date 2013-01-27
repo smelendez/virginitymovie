@@ -7,7 +7,7 @@ class StoryAdminForm(forms.ModelForm):
     class Meta:
         model = Story
         widgets = {
-            'text' : TinyMCE(attrs={'cols' : 100, 'rows' : 40})
+            'text' : TinyMCE(attrs={'cols' : 100, 'rows' : 40},mce_attrs={'theme' : 'advanced', })
         }
 class DefinitionAdmin(admin.ModelAdmin):
     pass
