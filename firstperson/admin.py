@@ -13,7 +13,7 @@ class DefinitionAdmin(admin.ModelAdmin):
     pass
 class StoryAdmin(admin.ModelAdmin):
     filter_horizontal = ['tags', 'places']
-    search_fields = ['title', 'name', 'text', 'age', 'tags__name', 'places__name']
+    search_fields = ['title', 'name', 'text', 'tags__name', 'places__name']
     form = StoryAdminForm
 
 
