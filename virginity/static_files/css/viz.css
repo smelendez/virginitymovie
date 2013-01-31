@@ -33,7 +33,7 @@
     font-weight: bold;
     float: left;
     position: relative;
-    top: 75px;
+    top: 125px;
 
 }
 #searchbox {
@@ -77,5 +77,10 @@ aside {
 }
 .tooltipname {
     font-size: 26px;
+
+}
+svg {
+    position: relative;
+    top: 50px;
 
 }
